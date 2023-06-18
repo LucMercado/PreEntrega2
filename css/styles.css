@@ -1,0 +1,142 @@
+.logo {
+    height: 5vh;
+}
+
+body {
+    background-color: #823200;
+}
+
+.nav-item {
+    font-size: 1.5rem;
+}
+
+.portada {
+    background-image: url(../img/pexels-messala-ciulla-1114226.jpg);
+    height: 50vh;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    box-shadow: 0 0 13px black;
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+.portada-texto {
+    margin-block-start: 20vh;
+    text-align: center;
+    color: aliceblue;
+    text-shadow: 0 0 13px black;
+}
+
+.titulos-h2 {
+    font-size: 3rem;
+    text-align: center;
+    margin: 20px;
+    color: white;
+    text-shadow: 0 0 5px black;
+}
+
+.contenedor-productos-destacados {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+
+}
+
+.card-producto {
+    background-color: white;
+    width: 300px;
+    height: 380px;
+    /* border: 1px solid gray; */
+    border-radius: 5px;
+    overflow: hidden;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 5px;
+    box-shadow: 0 0 5px black;
+
+}
+
+.card-producto img {
+    object-fit: cover;
+    /* width: 100%; */
+    height: 60%;
+}
+
+.card-producto-body {
+    width: 100%;
+    color: black;
+    height: 40%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* text-shadow:0 0 5px black; */
+}
+
+.card-producto-price {
+    font-size: 2rem;
+}
+
+.card-producto:hover {
+    translate: 0 -10px;
+    filter: drop-shadow(5px 5px 15px white);
+}
+
+hr {
+    margin:0;
+    background-color: gray;
+}
+
+.btn {
+    background-color: #ae8e1c69;
+    color: black;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 8px 10px;
+    align-self: center;
+}
+
+.btn:hover {
+    background-color: #9b3d12;
+    color: white;
+    border: 2px solid #10002b;
+    transform: scale(1.05);
+}
+
+.practica-segunda-entrega {
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.contenedor-practica {
+    width: 80%;
+
+    padding: 30px;
+    background-color: #10002b;
+    border: 2px solid white;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+
+}
