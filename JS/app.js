@@ -34,13 +34,40 @@ function crearNuevoProducto () {
 
 }
 
-function mostrarProductos() {
+function enviarArray() {
+    console.log("Lista de Productos agregados:");
+    mostrarProductos(arrayProductos);
+}
+
+function mostrarProductos(array) {
     let i = 1;
-    for (let producto of arrayProductos){
+    for (let producto of array){
         
         console.log("Producto", i, ": " , producto.nombre, ", Precio: $", producto.precio );
         i++;
     }
 }
 
+function mostrarProductosOrdenadosPorNombre() {
+    let ordenadosPorNombre = arrayProductos.map(elemento => elemento);
+    ordenadosPorNombre.sort((x, y) => x.nombre.localeCompare(y.nombre));
+    
+    console.log("Lista de Productos ordenados por nombre:");
 
+    mostrarProductos(ordenadosPorNombre);
+}
+
+function buscarProducto(){
+    let productoIngresado = document.getElementById("producto-buscar").value;
+    let productosFiltrados = arrayProductos.filter(producto => producto.nombre.includes(productoIngresado));
+    
+    if (productosFiltrados.length != 0) {
+        console.log("Lista de productos que coinciden con ese nombre: ")
+        mostrarProductos(productosFiltrados);
+    } else {
+        console.log("No se encontraron productos con ese nombre.");
+    }
+
+    document.getElementById("producto-buscar").value = "";
+
+}
