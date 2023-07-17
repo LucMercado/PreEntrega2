@@ -12,37 +12,6 @@ let titulo = document.getElementById("titulo");
 // document.body.append(parrafo);
 // parrafo.remove();
 
-class Producto{
-    constructor(id, nombre, precio, descripcion){
-        this.id = id;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.descripcion = descripcion;
-    }
-}
-
-const productos = [
-    new Producto(1, "Arena" , 600, "Precio x metro cubico"),
-    new Producto(2, "Cal", 800, "Precio x bolsa"),
-    new Producto(3, "Cemento", 950, "Precio x bolsa"),
-    new Producto(4, "Pegamento Baldosas", 850, "Precio x bolsa"),
-    new Producto(5, "Pegamento Ceramica", 980, "Precio x bolsa")
-];
-
-const contenedorProductos = document.querySelector('#contenedor-productos');
-
-productos.forEach( producto => {
-    const divProductos = document.createElement('div');
-    divProductos.innerHTML = `
-        <div class="card-producto"> 
-        <h3>${producto.nombre}</h3>
-        </div>
-    `;
-
-    contenedorProductos.appendChild(divProductos);
-})
-
-
 // function Producto (nombre, precio){
 
 //     this.nombre = nombre;

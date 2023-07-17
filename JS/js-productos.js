@@ -52,8 +52,11 @@ function actualizarCarrito(carrito) {
 }
 
 function mostrarCarrito() {
+    document.getElementById("contenedor-carrito").innerHTML = " ";
+
     const contenedorCarrito = document.querySelector("#contenedor-carrito");
     const carritoGuardado = localStorage.getItem("carrito");
+    let precioTotal = 0;
 
     if(carritoGuardado) {
         const carritoParse = JSON.parse(carritoGuardado);
@@ -66,15 +69,18 @@ function mostrarCarrito() {
                         <hr>
                         <strong class="card-producto-price">${producto.precio}</strong>
                         <h3 class="card-producto-title">${producto.nombre}</h3>          
-                        <button class="btn" id="btn-agregar-productos">Agregar producto</button>
+                        
                     </div>
                 </article>
-    `;
-
-    contenedorCarrito.appendChild(artCarrito);
-
-
+            `;
+            precioTotal += producto.precio;
+            contenedorCarrito.appendChild(artCarrito);
         })
+        let precioTotalTexto = document.createElement("h4");
+        precioTotalTexto.innerHTML = `
+        <h4 style="color:white">Monto Total Carrito: $${precioTotal}</h4>
+        `;
+        contenedorCarrito.appendChild(precioTotalTexto);
     }
 
 }
