@@ -104,3 +104,4 @@ function buscarProducto() {
 }
 
 mostrarProductos(productos);
+mostrarCarrito();
