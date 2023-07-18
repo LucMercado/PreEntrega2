@@ -11,12 +11,14 @@ class Producto {
 }
 
 const productos = [
-    new Producto(1, "Arena", 600, "Precio x metro cubico", "../img/ladrillo.png"),
-    new Producto(2, "Cal", 800, "Precio x bolsa", "../img/ladrillo.png"),
-    new Producto(3, "Cemento", 950, "Precio x bolsa", "../img/ladrillo.png"),
-    new Producto(4, "Pegamento Baldosas", 850, "Precio x bolsa", "../img/ladrillo.png"),
-    new Producto(5, "Pegamento Ceramica", 980, "Precio x bolsa", "../img/ladrillo.png"),
-    new Producto(6, "Ladrillo", 300, "Precio x unidad", "../img/ladrillo.png")
+    new Producto(1, "Arena", 6000, "Precio x bolson", "../img/arena.jpg"),
+    new Producto(2, "Cal", 800, "Precio x bolsa", "../img/cal.jpg"),
+    new Producto(3, "Cemento", 950, "Precio x bolsa", "../img/bolsa-cemento.png"),
+    new Producto(4, "Cemento Hidralit", 1850, "Precio x bolsa", "../img/hidralit.png"),
+    new Producto(5, "Pegamento Ceramica", 980, "Precio x bolsa", "../img/pegamento-ceramica.png"),
+    new Producto(6, "Ladrillo", 300, "Precio x unidad", "../img/ladrillo.jpg"),
+    new Producto(6, "Ladrillo Hueco", 250, "Precio x unidad", "../img/ladrillo-hueco.jpg"),
+    new Producto(6, "Ladrillo Block", 300, "Precio x unidad", "../img/ladrillo-block.jpg")
 ];
 
 const contenedorProductos = document.querySelector("#contenedor-productos");
