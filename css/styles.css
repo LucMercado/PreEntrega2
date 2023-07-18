@@ -146,3 +146,23 @@ hr {
 .titulo-carrito {
     margin-top: 10vh;
 }
+
+.formulario-busqueda {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 15px;
+    gap: 10px;
+}
+
+#monto-total {
+    text-align: center;
+    padding: 15px;
+}
+
+.contenedor-compra {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

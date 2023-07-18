@@ -47,9 +47,11 @@
     <main>
         <section class="productos">
             <h2 class="titulos-h2 titulo-carrito">NUESTROS PRODUCTOS</h2>
+            <form action="" class="formulario-busqueda">
             <label for="producto-buscar" style="color:white">Nombre del Producto a buscar: </label>
                 <input name="producto-buscar" id="producto-buscar" type="text">
                 <span class="btn" onclick="buscarProducto()">Buscar</span>
+            </form>
             <div id="contenedor-productos" class="contenedor-productos-destacados">
                 
             </div>
@@ -58,8 +60,12 @@
         <section class="productos">
             <h2 class="titulos-h2 titulo-carrito">CARRITO DE COMPRAS</h2>
             <div id="contenedor-carrito" class="contenedor-productos-destacados">
-                
             </div>
+            <div class="contenedor-compra">
+                <h4 id="monto-total"></h4>
+                <button id="confirmar-compra" class="btn" onclick="confirmarCompra()">Confirmar Compra</button>
+            </div>
+            
         </section>
         
     </main>
