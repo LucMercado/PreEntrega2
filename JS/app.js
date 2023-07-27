@@ -1,71 +1,59 @@
 console.log( "Esta conectado");
+const productosArray = [];
+const contenedorProductos = document.querySelector("#contenedor-productos");
+let carritoProductos = [];
+localStorage.setItem("carrito", carritoProductos);
 
-let titulo = document.getElementById("titulo");
+// Función para obtener los datos y guardarlos en el array
+async function obtenerProductos() {
+    try {
+        const response = await fetch("../JSON/productos-destacados.json");
+        if (!response.ok) {
+            throw new Error('Error al obtener los datos del JSON.');
+        }
 
-// console.log(titulo.innerHTML);
+        const data = await response.json();
+        productosArray.push(...data);
 
-// titulo.innerText = "Hola mundoo";
+        mostrarProductos(productosArray);
 
-// parrafo = document.createElement("p");
-// parrafo.innerHTML = "<h2>¡Bienvenidos, Llegaste al lugar indicado!</h2>";
+        console.log('Datos obtenidos del JSON:', productosArray);
+    } catch (error) {
+        console.error('Error:', error.message);
+    }
+}
 
-// document.body.append(parrafo);
-// parrafo.remove();
+function mostrarProductos(productos) {
+    contenedorProductos.innerHTML = " ";
+    productos.forEach(producto => {
+        const artProductos = document.createElement("article");
+        artProductos.innerHTML = `
+            <article class="card-producto"> 
+                <img src=${producto.img}>
+                <div class="card-producto-body">
+                    <hr>
+                    <strong class="card-producto-price">${producto.precio}</strong>
+                    <h3 class="card-producto-title">${producto.nombre}</h3>          
+                    <button class="btn" id="btn-agregar-productos">Agregar producto</button>
+                </div>
+            </article>
+        `;
+        contenedorProductos.appendChild(artProductos);
 
-// function Producto (nombre, precio){
+        const btnAgregar = artProductos.querySelector("#btn-agregar-productos");
 
-//     this.nombre = nombre;
-//     this.precio = precio;
+        btnAgregar.addEventListener("click", () => {
+            carritoProductos.push(producto);
 
-// }
+            actualizarCarrito(carritoProductos);
+        })
 
-// function crearNuevoProducto () {
-//     let nombreProducto = document.getElementById("nombre-producto").value;
-//     let precioProducto = document.getElementById("precio-producto").value;
-    
-//     producto1 = new Producto(nombreProducto, precioProducto);
-//     arrayProductos.push(producto1)
-//     console.log(arrayProductos)
-//     console.log("Creo un producto llamado: ", producto1.nombre, ", con el precio: $" , producto1.precio);
-//     document.getElementById("nombre-producto").value = "";
-//     document.getElementById("precio-producto").value = "";
+    })
 
-// }
+}
 
-// function enviarArray() {
-//     console.log("Lista de Productos agregados:");
-//     mostrarProductos(arrayProductos);
-// }
+function actualizarCarrito(carrito) {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+}
 
-// function mostrarProductos(array) {
-//     let i = 1;
-//     for (let producto of array){
-        
-//         console.log("Producto", i, ": " , producto.nombre, ", Precio: $", producto.precio );
-//         i++;
-//     }
-// }
-
-// function mostrarProductosOrdenadosPorNombre() {
-//     let ordenadosPorNombre = arrayProductos.map(elemento => elemento);
-//     ordenadosPorNombre.sort((x, y) => x.nombre.localeCompare(y.nombre));
-    
-//     console.log("Lista de Productos ordenados por nombre:");
-
-//     mostrarProductos(ordenadosPorNombre);
-// }
-
-// function buscarProducto(){
-//     let productoIngresado = document.getElementById("producto-buscar").value;
-//     let productosFiltrados = arrayProductos.filter(producto => producto.nombre.includes(productoIngresado));
-    
-//     if (productosFiltrados.length != 0) {
-//         console.log("Lista de productos que coinciden con ese nombre: ")
-//         mostrarProductos(productosFiltrados);
-//     } else {
-//         console.log("No se encontraron productos con ese nombre.");
-//     }
-
-//     document.getElementById("producto-buscar").value = "";
-
-// }
+obtenerProductos();

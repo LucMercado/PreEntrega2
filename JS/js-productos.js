@@ -1,27 +1,53 @@
-let carritoProductos = [];
+// class Producto {
+//     constructor(id, nombre, precio, descripcion, img) {
+//         this.id = id;
+//         this.nombre = nombre;
+//         this.precio = precio;
+//         this.descripcion = descripcion;
+//         this.img = img;
+//     }
+// }
 
-class Producto {
-    constructor(id, nombre, precio, descripcion, img) {
-        this.id = id;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.descripcion = descripcion;
-        this.img = img;
-    }
+// const productos = [
+//     new Producto(1, "Arena", 6000, "Precio x bolson", "../img/arena.jpg"),
+//     new Producto(2, "Cal", 800, "Precio x bolsa", "../img/cal.jpg"),
+//     new Producto(3, "Cemento", 950, "Precio x bolsa", "../img/bolsa-cemento.png"),
+//     new Producto(4, "Cemento Hidralit", 1850, "Precio x bolsa", "../img/hidralit.png"),
+//     new Producto(5, "Pegamento Ceramica", 980, "Precio x bolsa", "../img/pegamento-ceramica.png"),
+//     new Producto(6, "Ladrillo", 300, "Precio x unidad", "../img/ladrillo.jpg"),
+//     new Producto(7, "Ladrillo Hueco", 250, "Precio x unidad", "../img/ladrillo-hueco.jpg"),
+//     new Producto(8, "Ladrillo Block", 300, "Precio x unidad", "../img/ladrillo-block.jpg")
+// ];
+
+let carritoProductosJSON = localStorage.getItem("carrito");
+if (carritoProductosJSON) {
+    carritoProductos = JSON.parse(carritoProductosJSON);
+}else {
+    carritoProductos = [];
 }
 
-const productos = [
-    new Producto(1, "Arena", 6000, "Precio x bolson", "../img/arena.jpg"),
-    new Producto(2, "Cal", 800, "Precio x bolsa", "../img/cal.jpg"),
-    new Producto(3, "Cemento", 950, "Precio x bolsa", "../img/bolsa-cemento.png"),
-    new Producto(4, "Cemento Hidralit", 1850, "Precio x bolsa", "../img/hidralit.png"),
-    new Producto(5, "Pegamento Ceramica", 980, "Precio x bolsa", "../img/pegamento-ceramica.png"),
-    new Producto(6, "Ladrillo", 300, "Precio x unidad", "../img/ladrillo.jpg"),
-    new Producto(6, "Ladrillo Hueco", 250, "Precio x unidad", "../img/ladrillo-hueco.jpg"),
-    new Producto(6, "Ladrillo Block", 300, "Precio x unidad", "../img/ladrillo-block.jpg")
-];
-
+console.log(carritoProductos);
+const productosArray = [];
 const contenedorProductos = document.querySelector("#contenedor-productos");
+
+// Función para obtener los datos y guardarlos en el array
+async function obtenerProductos() {
+    try {
+        const response = await fetch("../JSON/productos.json");
+        if (!response.ok) {
+            throw new Error('Error al obtener los datos del JSON.');
+        }
+
+        const data = await response.json();
+        productosArray.push(...data);
+
+        mostrarProductos(productosArray);
+
+        console.log('Datos obtenidos del JSON:', productosArray);
+    } catch (error) {
+        console.error('Error:', error.message);
+    }
+}
 
 function mostrarProductos(productos) {
     contenedorProductos.innerHTML = " ";
@@ -92,7 +118,7 @@ function mostrarCarrito() {
         contenedorMontoTotal.innerHTML = "";
         contenedorMontoTotal.appendChild(precioTotalTexto);
 
-    }else {
+    } else {
         let carritoVacioTexto = document.createElement("h4");
         carritoVacioTexto.innerHTML = `
         <h4 style="color:white">Aun no se han agregado productos al carrito</h4>
@@ -107,9 +133,9 @@ function buscarProducto() {
     let productoIngresado = document.getElementById("producto-buscar").value;
     let productosFiltrados = productos.filter(producto => producto.nombre.includes(productoIngresado));
 
-    if (productosFiltrados.length != 0 ) {
+    if (productosFiltrados.length != 0) {
         mostrarProductos(productosFiltrados);
-    }else {
+    } else {
         contenedorProductos.innerHTML = "No se encontraron productos con ese nombre.";
     }
 
@@ -122,5 +148,5 @@ function confirmarCompra() {
     mostrarCarrito();
 }
 
-mostrarProductos(productos);
+obtenerProductos();
 mostrarCarrito();

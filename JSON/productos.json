@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "nombre": "Bolson Arena",
+        "precio": 6000,
+        "descripcion": "Precio x bolson",
+        "img": "../img/arena.jpg"
+    },
+    {
+        "id": 2,
+        "nombre": "Cal",
+        "precio": 1500,
+        "descripcion": "Precio x bolsa",
+        "img": "../img/cal.jpg"
+    },
+    {
+        "id": 3,
+        "nombre": "Cemento",
+        "precio": 950,
+        "descripcion": "Precio x bolsa",
+        "img": "../img/bolsa-cemento.png"
+    },
+    {
+        "id": 4,
+        "nombre": "Cemento Hidralit",
+        "precio": 1850,
+        "descripcion": "Precio x bolsa",
+        "img": "../img/hidralit.png"
+    },
+    {
+        "id": 5,
+        "nombre": "Pegamento Ceramica",
+        "precio": 980,
+        "descripcion": "Precio x bolsa",
+        "img": "../img/pegamento-ceramica.png"
+    },
+    {
+        "id": 6,
+        "nombre": "Ladrillo",
+        "precio": 70,
+        "descripcion": "Precio x unidad",
+        "img": "../img/ladrillo.jpg"
+    },
+    {
+        "id": 7,
+        "nombre": "Ladrillo Hueco",
+        "precio": 190,
+        "descripcion": "Precio x unidad",
+        "img": "../img/ladrillo-hueco.jpg"
+    },
+    {
+        "id": 8,
+        "nombre": "Ladrillo Block",
+        "precio": 200,
+        "descripcion": "Precio x unidad",
+        "img": "../img/ladrillo-block.jpg"
+    },
+    {
+        "id": 9,
+        "nombre": "Yeso",
+        "precio": 3600,
+        "descripcion": "Precio x bolsa 30Kg",
+        "img": "../img/yeso.jpg"
+    },
+    {
+        "id": 10,
+        "nombre": "Bolson Piedra",
+        "precio": 30000,
+        "descripcion": "Precio x bolson",
+        "img": "../img/bolson-piedra.jpg"
+    }
+]
