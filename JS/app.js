@@ -1,5 +1,5 @@
 console.log( "Esta conectado");
-const productosArray = [];
+const productosDestacados = [];
 const contenedorProductos = document.querySelector("#contenedor-productos");
 let carritoProductos = [];
 localStorage.setItem("carrito", carritoProductos);
@@ -7,17 +7,17 @@ localStorage.setItem("carrito", carritoProductos);
 // Función para obtener los datos y guardarlos en el array
 async function obtenerProductos() {
     try {
-        const response = await fetch("../JSON/productos-destacados.json");
+        const response = await fetch("../JSON/productosDestacados.json");
         if (!response.ok) {
             throw new Error('Error al obtener los datos del JSON.');
         }
 
         const data = await response.json();
-        productosArray.push(...data);
+        productosDestacados.push(...data);
 
-        mostrarProductos(productosArray);
+        mostrarProductos(productosDestacados);
 
-        console.log('Datos obtenidos del JSON:', productosArray);
+        console.log('Datos obtenidos del JSON:', productosDestacados);
     } catch (error) {
         console.error('Error:', error.message);
     }
