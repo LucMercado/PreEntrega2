@@ -22,7 +22,7 @@
 let carritoProductosJSON = localStorage.getItem("carrito");
 if (carritoProductosJSON) {
     carritoProductos = JSON.parse(carritoProductosJSON);
-}else {
+} else {
     carritoProductos = [];
 }
 
@@ -103,12 +103,21 @@ function mostrarCarrito() {
                         <hr>
                         <strong class="card-producto-price">${producto.precio}</strong>
                         <h3 class="card-producto-title">${producto.nombre}</h3>          
-                        
+                        <button class="btn" id="btn-quitar-productos">Quitar producto</button>
                     </div>
                 </article>
             `;
             precioTotal += producto.precio;
             contenedorCarrito.appendChild(artCarrito);
+
+            const btnQuitar = artCarrito.querySelector("#btn-quitar-productos");
+
+            btnQuitar.addEventListener("click", () => {
+                carritoProductos = quitarProducto(producto, carritoProductos);
+
+                actualizarCarrito(carritoProductos);
+                mostrarCarrito();
+            })
         })
         let precioTotalTexto = document.createElement("h4");
         precioTotalTexto.innerHTML = `
@@ -127,6 +136,12 @@ function mostrarCarrito() {
         contenedorMontoTotal.appendChild(carritoVacioTexto);
     }
 
+}
+
+function quitarProducto(producto, arrayOriginal){
+    const productosFiltrados = arrayOriginal.filter((item) => item.nombre !== producto.nombre);
+    console.log(productosFiltrados);
+    return productosFiltrados;
 }
 
 function buscarProducto() {

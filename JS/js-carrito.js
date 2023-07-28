@@ -1,6 +1,4 @@
 function mostrarCarrito() {
-    // document.getElementById("contenedor-carrito").innerHTML = " ";
-
     const contenedorCarrito = document.querySelector("#contenedor-carrito");
     contenedorCarrito.innerHTML = " ";
     const carritoGuardado = localStorage.getItem("carrito");
@@ -8,7 +6,7 @@ function mostrarCarrito() {
     let precioTotal = 0;
 
     if (carritoGuardado) {
-        const carritoParse = JSON.parse(carritoGuardado);
+        let carritoParse = JSON.parse(carritoGuardado);
         carritoParse.forEach(producto => {
             const artCarrito = document.createElement("article");
             artCarrito.innerHTML = `
@@ -18,12 +16,21 @@ function mostrarCarrito() {
                         <hr>
                         <strong class="card-producto-price">${producto.precio}</strong>
                         <h3 class="card-producto-title">${producto.nombre}</h3>          
-                        
+                        <button class="btn" id="btn-quitar-productos">Quitar producto</button>
                     </div>
                 </article>
             `;
             precioTotal += producto.precio;
             contenedorCarrito.appendChild(artCarrito);
+
+            const btnQuitar = artCarrito.querySelector("#btn-quitar-productos");
+
+            btnQuitar.addEventListener("click", () => {
+                carritoParse = quitarProducto(producto, carritoParse);
+
+                actualizarCarrito(carritoParse);
+                mostrarCarrito();
+            })
         })
         let precioTotalTexto = document.createElement("h4");
         precioTotalTexto.innerHTML = `
@@ -32,7 +39,7 @@ function mostrarCarrito() {
         // contenedorCarrito.appendChild(precioTotalTexto);
         contenedorMontoTotal.innerHTML = "";
         contenedorMontoTotal.appendChild(precioTotalTexto);
-    }else {
+    } else {
         let carritoVacioTexto = document.createElement("h4");
         carritoVacioTexto.innerHTML = `
         <h4 style="color:white">Aun no se han agregado productos al carrito</h4>
@@ -40,6 +47,15 @@ function mostrarCarrito() {
         contenedorMontoTotal.innerHTML = "";
         contenedorMontoTotal.appendChild(carritoVacioTexto);
     }
+}
+
+function actualizarCarrito(carrito) {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
+function quitarProducto(producto, arrayOriginal) {
+    const productosFiltrados = arrayOriginal.filter((item) => item.nombre !== producto.nombre);
+    return productosFiltrados;
 }
 
 function confirmarCompra() {

@@ -7,7 +7,7 @@ localStorage.setItem("carrito", carritoProductos);
 // Función para obtener los datos y guardarlos en el array
 async function obtenerProductos() {
     try {
-        const response = await fetch("../JSON/productosDestacados.json");
+        const response = await fetch("../JSON/productos.json");
         if (!response.ok) {
             throw new Error('Error al obtener los datos del JSON.');
         }
