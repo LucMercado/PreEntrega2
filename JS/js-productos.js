@@ -48,6 +48,7 @@ function mostrarProductos(productos) {
         const btnAgregar = artProductos.querySelector("#btn-agregar-productos");
 
         btnAgregar.addEventListener("click", () => {
+            // carritoParse = JSON.parse(localStorage.getItem("carrito"));
             if (carritoParse !== null) {
                 if (carritoParse.includes(producto)) {
                     producto.cantidad++;
@@ -88,6 +89,7 @@ function mostrarProductos(productos) {
 
 function actualizarCarrito(carrito) {
     localStorage.setItem("carrito", JSON.stringify(carrito));
+
 }
 
 function mostrarCarrito() {
@@ -181,9 +183,22 @@ function quitarProducto(producto, arrayOriginal) {
     return productosFiltrados;
 }
 
-function buscarProducto() {
+async function buscarProducto() {
+    try {
+        const response = await fetch("../JSON/productos.json");
+        if (!response.ok) {
+            throw new Error('Error al obtener los datos del JSON.');
+        }
+
+        const data = await response.json();
+        productosArray.push(...data);
+
+        console.log('Datos obtenidos del JSON:', productosArray);
+    } catch (error) {
+        console.error('Error:', error.message);
+    }
     let productoIngresado = document.getElementById("producto-buscar").value;
-    let productosFiltrados = productos.filter(producto => producto.nombre.includes(productoIngresado));
+    let productosFiltrados = productosArray.filter(producto => producto.nombre.includes(productoIngresado));
 
     if (productosFiltrados.length != 0) {
         mostrarProductos(productosFiltrados);
