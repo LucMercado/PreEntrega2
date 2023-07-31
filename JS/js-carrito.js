@@ -33,6 +33,13 @@ function mostrarCarrito() {
                 carritoParse = quitarProducto(producto, carritoParse);
                 actualizarCarrito(carritoParse);
                 mostrarCarrito();
+                Toastify({
+
+                    text: "Producto eliminado.",
+                    
+                    duration: 3000
+                    
+                    }).showToast();
             })
 
             const btnCantidadMenos = artCarrito.querySelector("#btn-menos");
@@ -59,7 +66,7 @@ function mostrarCarrito() {
         precioTotalTexto.innerHTML = `
         <h4 style="color:white">Monto Total Carrito: $${precioTotal}</h4>
         `;
-        // contenedorCarrito.appendChild(precioTotalTexto);
+        
         contenedorMontoTotal.innerHTML = "";
         contenedorMontoTotal.appendChild(precioTotalTexto);
     } else {

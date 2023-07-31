@@ -4,7 +4,7 @@
         "nombre": "Bolson Arena",
         "precio": 6000,
         "descripcion": "Precio x bolson",
-        "img": "../img/arena.jpg",
+        "img": "./img/arena.jpg",
         "cantidad": 1
     },
     {
@@ -12,7 +12,7 @@
         "nombre": "Cal",
         "precio": 1500,
         "descripcion": "Precio x bolsa",
-        "img": "../img/cal.jpg",
+        "img": "./img/cal.jpg",
         "cantidad": 1
     },
     {
@@ -20,7 +20,7 @@
         "nombre": "Cemento",
         "precio": 950,
         "descripcion": "Precio x bolsa",
-        "img": "../img/bolsa-cemento.png",
+        "img": "./img/bolsa-cemento.png",
         "cantidad": 1
     }
 ]
