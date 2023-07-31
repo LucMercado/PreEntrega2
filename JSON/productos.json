@@ -4,69 +4,79 @@
         "nombre": "Bolson Arena",
         "precio": 6000,
         "descripcion": "Precio x bolson",
-        "img": "../img/arena.jpg"
+        "img": "../img/arena.jpg",
+        "cantidad": 1
     },
     {
         "id": 2,
         "nombre": "Cal",
         "precio": 1500,
         "descripcion": "Precio x bolsa",
-        "img": "../img/cal.jpg"
+        "img": "../img/cal.jpg",
+        "cantidad": 1
     },
     {
         "id": 3,
         "nombre": "Cemento",
         "precio": 950,
         "descripcion": "Precio x bolsa",
-        "img": "../img/bolsa-cemento.png"
+        "img": "../img/bolsa-cemento.png",
+        "cantidad": 1
     },
     {
         "id": 4,
         "nombre": "Cemento Hidralit",
         "precio": 1850,
         "descripcion": "Precio x bolsa",
-        "img": "../img/hidralit.png"
+        "img": "../img/hidralit.png",
+        "cantidad": 1
     },
     {
         "id": 5,
         "nombre": "Pegamento Ceramica",
         "precio": 980,
         "descripcion": "Precio x bolsa",
-        "img": "../img/pegamento-ceramica.png"
+        "img": "../img/pegamento-ceramica.png",
+        "cantidad": 1
     },
     {
         "id": 6,
         "nombre": "Ladrillo",
         "precio": 70,
         "descripcion": "Precio x unidad",
-        "img": "../img/ladrillo.jpg"
+        "img": "../img/ladrillo.jpg",
+        "cantidad": 1
     },
     {
         "id": 7,
         "nombre": "Ladrillo Hueco",
         "precio": 190,
         "descripcion": "Precio x unidad",
-        "img": "../img/ladrillo-hueco.jpg"
+        "img": "../img/ladrillo-hueco.jpg",
+        "cantidad": 1
     },
     {
         "id": 8,
         "nombre": "Ladrillo Block",
         "precio": 200,
         "descripcion": "Precio x unidad",
-        "img": "../img/ladrillo-block.jpg"
+        "img": "../img/ladrillo-block.jpg",
+        "cantidad": 1
     },
     {
         "id": 9,
         "nombre": "Yeso",
         "precio": 3600,
         "descripcion": "Precio x bolsa 30Kg",
-        "img": "../img/yeso.jpg"
+        "img": "../img/yeso.jpg",
+        "cantidad": 1
     },
     {
         "id": 10,
         "nombre": "Bolson Piedra",
         "precio": 30000,
         "descripcion": "Precio x bolson",
-        "img": "../img/bolson-piedra.jpg"
+        "img": "../img/bolson-piedra.jpg",
+        "cantidad": 1
     }
 ]

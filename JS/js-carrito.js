@@ -10,27 +10,50 @@ function mostrarCarrito() {
         carritoParse.forEach(producto => {
             const artCarrito = document.createElement("article");
             artCarrito.innerHTML = `
-                <article class="card-producto"> 
+                <article class="card-producto card-carrito"> 
                     <img src=${producto.img}>
                     <div class="card-producto-body">
                         <hr>
                         <strong class="card-producto-price">${producto.precio}</strong>
-                        <h3 class="card-producto-title">${producto.nombre}</h3>          
+                        <h3 class="card-producto-title">${producto.nombre}</h3>
+                        <div class="cantidad-contenedor">
+                            <button class="cantidad-btn" id="btn-menos">-</button>
+                            <input class="cantidad-input" type="text" value="${producto.cantidad}">
+                            <button class="cantidad-btn" id="btn-mas">+</button>
+                        </div>
                         <button class="btn" id="btn-quitar-productos">Quitar producto</button>
                     </div>
                 </article>
             `;
-            precioTotal += producto.precio;
+            precioTotal += producto.precio * producto.cantidad;;
             contenedorCarrito.appendChild(artCarrito);
 
             const btnQuitar = artCarrito.querySelector("#btn-quitar-productos");
-
             btnQuitar.addEventListener("click", () => {
                 carritoParse = quitarProducto(producto, carritoParse);
-
                 actualizarCarrito(carritoParse);
                 mostrarCarrito();
             })
+
+            const btnCantidadMenos = artCarrito.querySelector("#btn-menos");
+            btnCantidadMenos.addEventListener("click", () => {
+                producto.cantidad --;
+                carritoParse = quitarProducto(producto, carritoParse);
+                carritoParse.push(producto);
+                actualizarCarrito(carritoParse);
+                mostrarCarrito();
+            })
+
+
+            const btnCantidadMas = artCarrito.querySelector("#btn-mas");
+            btnCantidadMas.addEventListener("click", () => {
+                producto.cantidad ++;
+                carritoParse = quitarProducto(producto, carritoParse);
+                carritoParse.push(producto);
+                actualizarCarrito(carritoParse);
+                mostrarCarrito();
+            })
+
         })
         let precioTotalTexto = document.createElement("h4");
         precioTotalTexto.innerHTML = `
@@ -46,6 +69,9 @@ function mostrarCarrito() {
         `;
         contenedorMontoTotal.innerHTML = "";
         contenedorMontoTotal.appendChild(carritoVacioTexto);
+        const btnConfirmarCompra = document.getElementById("confirmar-compra");
+        btnConfirmarCompra.disabled = true;
+        
     }
 }
 
@@ -59,7 +85,7 @@ function quitarProducto(producto, arrayOriginal) {
 }
 
 function confirmarCompra() {
-    alert("Compra realizada");
+    Swal.fire('Compra Realizada');
     localStorage.removeItem("carrito");
     mostrarCarrito();
 }

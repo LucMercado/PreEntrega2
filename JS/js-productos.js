@@ -1,23 +1,3 @@
-// class Producto {
-//     constructor(id, nombre, precio, descripcion, img) {
-//         this.id = id;
-//         this.nombre = nombre;
-//         this.precio = precio;
-//         this.descripcion = descripcion;
-//         this.img = img;
-//     }
-// }
-
-// const productos = [
-//     new Producto(1, "Arena", 6000, "Precio x bolson", "../img/arena.jpg"),
-//     new Producto(2, "Cal", 800, "Precio x bolsa", "../img/cal.jpg"),
-//     new Producto(3, "Cemento", 950, "Precio x bolsa", "../img/bolsa-cemento.png"),
-//     new Producto(4, "Cemento Hidralit", 1850, "Precio x bolsa", "../img/hidralit.png"),
-//     new Producto(5, "Pegamento Ceramica", 980, "Precio x bolsa", "../img/pegamento-ceramica.png"),
-//     new Producto(6, "Ladrillo", 300, "Precio x unidad", "../img/ladrillo.jpg"),
-//     new Producto(7, "Ladrillo Hueco", 250, "Precio x unidad", "../img/ladrillo-hueco.jpg"),
-//     new Producto(8, "Ladrillo Block", 300, "Precio x unidad", "../img/ladrillo-block.jpg")
-// ];
 
 let carritoProductosJSON = localStorage.getItem("carrito");
 if (carritoProductosJSON) {
@@ -97,33 +77,56 @@ function mostrarCarrito() {
         carritoParse.forEach(producto => {
             const artCarrito = document.createElement("article");
             artCarrito.innerHTML = `
-                <article class="card-producto"> 
+                <article class="card-producto card-carrito"> 
                     <img src=${producto.img}>
                     <div class="card-producto-body">
                         <hr>
                         <strong class="card-producto-price">${producto.precio}</strong>
-                        <h3 class="card-producto-title">${producto.nombre}</h3>          
+                        <h3 class="card-producto-title">${producto.nombre}</h3>
+                        <div class="cantidad-contenedor">
+                            <button class="cantidad-btn" id="btn-menos">-</button>
+                            <input class="cantidad-input" type="text" value="${producto.cantidad}">
+                            <button class="cantidad-btn" id="btn-mas">+</button>
+                        </div>
                         <button class="btn" id="btn-quitar-productos">Quitar producto</button>
                     </div>
                 </article>
             `;
-            precioTotal += producto.precio;
+            precioTotal += producto.precio * producto.cantidad;
             contenedorCarrito.appendChild(artCarrito);
 
             const btnQuitar = artCarrito.querySelector("#btn-quitar-productos");
-
             btnQuitar.addEventListener("click", () => {
                 carritoProductos = quitarProducto(producto, carritoProductos);
 
                 actualizarCarrito(carritoProductos);
                 mostrarCarrito();
             })
+
+            const btnCantidadMenos = artCarrito.querySelector("#btn-menos");
+            btnCantidadMenos.addEventListener("click", () => {
+                producto.cantidad --;
+                carritoProductos = quitarProducto(producto, carritoProductos);
+                carritoProductos.push(producto);
+                actualizarCarrito(carritoProductos);
+                mostrarCarrito();
+            })
+
+
+            const btnCantidadMas = artCarrito.querySelector("#btn-mas");
+            btnCantidadMas.addEventListener("click", () => {
+                producto.cantidad ++;
+                carritoProductos = quitarProducto(producto, carritoProductos);
+                carritoProductos.push(producto);
+                actualizarCarrito(carritoProductos);
+                mostrarCarrito();
+            })
+
         })
         let precioTotalTexto = document.createElement("h4");
         precioTotalTexto.innerHTML = `
         <h4 style="color:white">Monto Total Carrito: $${precioTotal}</h4>
         `;
-        // contenedorCarrito.appendChild(precioTotalTexto);
         contenedorMontoTotal.innerHTML = "";
         contenedorMontoTotal.appendChild(precioTotalTexto);
 
@@ -134,13 +137,14 @@ function mostrarCarrito() {
         `;
         contenedorMontoTotal.innerHTML = "";
         contenedorMontoTotal.appendChild(carritoVacioTexto);
+        const btnConfirmarCompra = document.getElementById("confirmar-compra");
+        btnConfirmarCompra.disabled = true;
     }
 
 }
 
 function quitarProducto(producto, arrayOriginal){
     const productosFiltrados = arrayOriginal.filter((item) => item.nombre !== producto.nombre);
-    console.log(productosFiltrados);
     return productosFiltrados;
 }
 
@@ -158,8 +162,9 @@ function buscarProducto() {
 }
 
 function confirmarCompra() {
-    alert("Compra realizada");
+    Swal.fire('Compra Realizada');
     localStorage.removeItem("carrito");
+    carritoProductos = [];
     mostrarCarrito();
 }
 

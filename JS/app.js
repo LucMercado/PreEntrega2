@@ -7,7 +7,7 @@ localStorage.setItem("carrito", carritoProductos);
 // Función para obtener los datos y guardarlos en el array
 async function obtenerProductos() {
     try {
-        const response = await fetch("../JSON/productos.json");
+        const response = await fetch("./JSON/productosDestacados.json");
         if (!response.ok) {
             throw new Error('Error al obtener los datos del JSON.');
         }
@@ -33,7 +33,7 @@ function mostrarProductos(productos) {
                 <div class="card-producto-body">
                     <hr>
                     <strong class="card-producto-price">${producto.precio}</strong>
-                    <h3 class="card-producto-title">${producto.nombre}</h3>          
+                    <h3 class="card-producto-title">${producto.nombre}</h3>
                     <button class="btn" id="btn-agregar-productos">Agregar producto</button>
                 </div>
             </article>
