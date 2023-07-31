@@ -21,14 +21,14 @@ async function obtenerProductos() {
     }
 }
 
+const carritoGuardado = localStorage.getItem("carrito");
+if (carritoGuardado) {
+    carritoParse = JSON.parse(carritoGuardado);
+} else {
+    carritoParse = [];
+}
+
 function mostrarProductos(productos) {
-    const carritoGuardado = localStorage.getItem("carrito");
-    let carritoParse;
-    if (carritoGuardado) {
-        carritoParse = JSON.parse(carritoGuardado);
-    } else {
-        carritoParse = []
-    }
     contenedorProductos.innerHTML = " ";
     productos.forEach(producto => {
         const artProductos = document.createElement("article");
@@ -48,7 +48,6 @@ function mostrarProductos(productos) {
         const btnAgregar = artProductos.querySelector("#btn-agregar-productos");
 
         btnAgregar.addEventListener("click", () => {
-            // carritoParse = JSON.parse(localStorage.getItem("carrito"));
             if (carritoParse !== null) {
                 if (carritoParse.includes(producto)) {
                     producto.cantidad++;
@@ -86,22 +85,22 @@ function mostrarProductos(productos) {
 
 }
 
-
 function actualizarCarrito(carrito) {
     localStorage.setItem("carrito", JSON.stringify(carrito));
+    carritoParse = carrito;
 
 }
 
 function mostrarCarrito() {
     document.getElementById("contenedor-carrito").innerHTML = " ";
-
+    const btnConfirmarCompra = document.getElementById("confirmar-compra");
     const contenedorCarrito = document.querySelector("#contenedor-carrito");
     const contenedorMontoTotal = document.getElementById("monto-total");
-    const carritoGuardado = localStorage.getItem("carrito");
     let precioTotal = 0;
 
-    if (carritoGuardado) {
-        let carritoParse = JSON.parse(carritoGuardado);
+    if (carritoParse.length !== 0) {
+        btnConfirmarCompra.disabled = false;
+        
         carritoParse.forEach(producto => {
             const artCarrito = document.createElement("article");
             artCarrito.innerHTML = `
@@ -172,7 +171,6 @@ function mostrarCarrito() {
         `;
         contenedorMontoTotal.innerHTML = "";
         contenedorMontoTotal.appendChild(carritoVacioTexto);
-        const btnConfirmarCompra = document.getElementById("confirmar-compra");
         btnConfirmarCompra.disabled = true;
     }
 
@@ -211,7 +209,7 @@ async function buscarProducto() {
 
 function confirmarCompra() {
     Swal.fire('Compra Realizada');
-    localStorage.removeItem("carrito");
+    actualizarCarrito([]);
     mostrarCarrito();
 }
 
